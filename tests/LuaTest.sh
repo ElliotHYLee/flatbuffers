@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -eu
 #
-# Copyright 2015 Google Inc. All rights reserved.
+# Copyright 2019 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-clang++ -fsanitize-coverage=edge -fsanitize=address -fsanitize=undefined \
-  -g -fno-omit-frame-pointer -std=c++11 -stdlib=libstdc++ \
-  -I.. -I../../include flatbuffers_verifier_fuzzer.cc libFuzzer.a -o fuzz_verifier
-mkdir -p verifier_corpus
-cp ../*.mon verifier_corpus
-./fuzz_verifier verifier_corpus
+pushd "$(dirname $0)" >/dev/null
+test_dir="$(pwd)"
+
+${test_dir}/../flatc --lua -I include_test monster_test.fbs
+
+lua5.3 luatest.lua
