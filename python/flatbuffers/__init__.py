@@ -15,3 +15,6 @@
 from .builder import Builder
 from .table import Table
 from .compat import range_func as compat_range
+from .util import *
+from .packer import *
+from .encode import *
