@@ -1,0 +1,4 @@
+1. Compile flatc @ ubuntu
+
+2. for C# dll you can use it in windows. @"/net/flatbuffers/" open FlatBuffers.csproj
+3. for python install, python setup.py install @"/python/flatbuffers" 
